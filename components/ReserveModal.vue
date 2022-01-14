@@ -38,35 +38,36 @@
         <!-- Modal body -->
         <div class="p-6 space-y-6">
           <transition name="fade" mode="out-in">
-            <div v-if="loading == true" key="loading">
-              <p>Loading...</p>
-            </div>
+            <Loading v-if="loading == true" key="loading" />
 
             <!-- Step 1 -->
-            <div
-              v-else-if="step === 1 && !loading"
-              key="1"
-              class="grid grid-cols-6 gap-6"
-            >
-              <div
-                v-for="(hour, index) in hours"
-                :key="index"
-                class="col-span-6 sm:col-span-3"
-              >
-                <div class="w-full lg:w-10/12 mx-auto">
-                  <button
-                    @click="form.hour = index"
-                    class="w-full border-2 rounded-full py-1"
-                    :class="
-                      form.hour === index
-                        ? 'bg-green-200 border-green-200'
-                        : 'bg-zinc-200 border-zinc-200'
-                    "
-                    type="button"
-                  >
-                    {{ hour[0] }}-{{ hour[1] }}
-                  </button>
+            <div v-else-if="step === 1 && !loading" key="1">
+              <div v-if="hours.length > 0" class="grid grid-cols-6 gap-6">
+                <div
+                  v-for="(hour, index) in hours"
+                  :key="index"
+                  class="col-span-6 sm:col-span-3"
+                >
+                  <div class="w-full lg:w-10/12 mx-auto">
+                    <button
+                      @click="form.hour = index"
+                      class="w-full border-2 rounded-full py-1"
+                      :class="
+                        form.hour === index
+                          ? 'bg-green-200 border-green-200'
+                          : 'bg-zinc-200 border-zinc-200'
+                      "
+                      type="button"
+                    >
+                      {{ hour[0] }}-{{ hour[1] }}
+                    </button>
+                  </div>
                 </div>
+              </div>
+
+              <!-- If no hours available -->
+              <div v-else class="text-lg text-center py-5">
+                <p>No available hours</p>
               </div>
             </div>
 

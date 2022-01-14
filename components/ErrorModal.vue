@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full max-w-2xl px-4 h-full md:h-auto">
+  <div class="relative w-full max-w-2xl">
     <div class="bg-white rounded-lg shadow relative">
       <!-- Modal body -->
       <div class="p-6 space-y-8 text-center">
