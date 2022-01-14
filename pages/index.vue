@@ -37,6 +37,7 @@
             v-model="trashDate"
             @input="dateSelected"
             :min-date="new Date()"
+            :disabled-dates="{ weekdays: [1, 7] }"
             is-expanded
           />
         </client-only>
