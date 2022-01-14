@@ -1,9 +1,86 @@
 <template>
-  <Tutorial />
+  <div>
+    <section class="w-full min-h-screen grid grid-cols-2 gap-10 lg:gap-4">
+      <div
+        class="
+          col-span-2
+          lg:col-auto
+          flex
+          items-end
+          lg:items-center
+          text-center
+        "
+      >
+        <div class="w-full text-white">
+          <h1
+            class="text-7xl md:text-8xl xl:text-9xl tracking-wider font-cursive"
+          >
+            Reserve a dance <br />
+            with the death
+          </h1>
+        </div>
+      </div>
+
+      <div
+        class="
+          w-10/12
+          lg:w-full
+          mx-auto
+          col-span-2
+          lg:col-auto
+          flex
+          lg:items-center
+        "
+      >
+        <client-only>
+          <v-date-picker
+            v-model="trashDate"
+            @input="dateSelected"
+            :min-date="new Date()"
+            is-expanded
+          />
+        </client-only>
+      </div>
+    </section>
+
+    <ModalLayout v-if="reserveModal" @toggle="toggleReserveModal">
+      <ReserveModal :date="date" @toggle="toggleReserveModal" />
+    </ModalLayout>
+
+    <ModalLayout v-if="error" @toggle="toggleErrorModal">
+      <ErrorModal :error="error" @toggle="toggleErrorModal" />
+    </ModalLayout>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  data() {
+    return {
+      reserveModal: false,
+      date: null,
+
+      error: null,
+
+      trashDate: null, // Only for fix a bug
+    }
+  },
+  methods: {
+    toggleReserveModal(error) {
+      this.reserveModal = !this.reserveModal
+      if (error) {
+        this.error = error
+      }
+    },
+    toggleErrorModal() {
+      this.error = null
+    },
+    dateSelected(date) {
+      if (date) {
+        this.date = date.toISOString().split('T')[0]
+      }
+      this.toggleReserveModal()
+    },
+  },
 }
 </script>
