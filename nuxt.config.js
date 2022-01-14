@@ -7,7 +7,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'DeathDance',
+    title: 'Dead Dance',
     htmlAttrs: {
       lang: 'en',
     },
