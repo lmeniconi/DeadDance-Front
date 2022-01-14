@@ -30,7 +30,6 @@ export default {
   },
   mounted() {
     this.show = true
-    console.log(this.$route.query.date)
   },
 }
 </script>

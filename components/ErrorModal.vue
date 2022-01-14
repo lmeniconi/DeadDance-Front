@@ -7,7 +7,7 @@
           Whoops! <br />
           An error has occurred
         </h3>
-        <p class="text-xl">{{ error.message }}</p>
+        <p class="text-xl">{{ errorMsg }}</p>
         <button
           @click="$emit('toggle')"
           class="
@@ -33,8 +33,12 @@ export default {
   props: {
     error: Error,
   },
-  mounted() {
-    console.log(this.error)
+  computed: {
+    errorMsg: function () {
+      return this.error.response.data.message
+        ? this.error.response.data.message
+        : this.error.message
+    },
   },
 }
 </script>

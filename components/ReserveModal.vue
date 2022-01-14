@@ -188,29 +188,16 @@ export default {
         hour: null,
       },
 
-      dayHours: null,
       hours: [],
 
       step: 1,
       loading: true,
     }
   },
-  // Get appointments of the date selected
+  // Get available hours of the date selected
   async fetch() {
-    this.dayHours = await this.$axios.$get('/appointments', {
-      params: { date: this.date },
-    })
-
-    // Filter available hours
-    this.$config.hours.forEach((hour) => {
-      if (
-        !this.dayHours.find((element) => element.start.split(' ')[1] == hour)
-      ) {
-        let start = this.formatHour(hour)
-        let end = this.formatHour(this.addHour(hour))
-        this.hours.push([start, end])
-      }
-    })
+    let hours = await this.$axios.$get(`/appointments/${this.date}/hours`)
+    this.hours = this.formatHours(hours)
 
     this.loading = false
   },
@@ -227,7 +214,6 @@ export default {
           start,
         })
         .then((data) => {
-          console.log(data)
           this.$router.push({
             path: '/thanks',
             query: { name: data.name, date: data.start },
@@ -243,6 +229,13 @@ export default {
     // Utils
     toggleStep() {
       this.step = this.step === 1 ? 2 : 1
+    },
+    formatHours(hours) {
+      let aux = []
+      hours.forEach((hour) => {
+        aux.push([this.formatHour(hour), this.formatHour(this.addHour(hour))])
+      })
+      return aux
     },
     formatHour(hour) {
       return hour.split(':')[0] + ':00'

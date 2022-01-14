@@ -1,4 +1,4 @@
-# Dead Dance Challenge for Asimov
+# Dead Dance challenge for Asimov
 
 ## Demo on [Netlify](https://deaddance.netlify.app/)
 
