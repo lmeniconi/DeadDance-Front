@@ -34,7 +34,7 @@
       >
         <client-only>
           <v-date-picker
-            v-model="auxValue"
+            :value="null"
             @input="dateSelected"
             mode="date"
             :min-date="new Date()"
@@ -63,8 +63,6 @@ export default {
       date: null,
 
       error: null,
-
-      auxValue: null,
     }
   },
   methods: {
