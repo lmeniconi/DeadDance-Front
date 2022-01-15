@@ -76,10 +76,11 @@ export default {
       this.error = null
     },
     dateSelected(date) {
+      console.log('before', this.date)
       date.setHours(0)
       if (date) {
         this.date = date.toISOString().split('T')[0]
-        console.log(this.date)
+        console.log('after', this.date)
       }
       this.toggleReserveModal()
     },
