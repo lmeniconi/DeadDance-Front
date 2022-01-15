@@ -34,7 +34,7 @@
       >
         <client-only>
           <v-date-picker
-            :value="null"
+            v-model="auxValue"
             @input="dateSelected"
             mode="date"
             :min-date="new Date()"
@@ -63,6 +63,8 @@ export default {
       date: null,
 
       error: null,
+
+      auxValue: null,
     }
   },
   methods: {
@@ -77,8 +79,8 @@ export default {
     },
     dateSelected(date) {
       console.log('before', date)
-      date.setHours(0)
       if (date) {
+        date.setHours(0)
         this.date = date.toISOString().split('T')[0]
         console.log('after', this.date)
       }
