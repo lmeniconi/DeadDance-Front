@@ -34,11 +34,11 @@
       >
         <client-only>
           <v-date-picker
-            v-model="trashDate"
+            :value="null"
             @input="dateSelected"
+            mode="date"
             :min-date="new Date()"
             :disabled-dates="{ weekdays: [1, 7] }"
-            timezone="America/Aruba"
             is-expanded
           />
         </client-only>
@@ -63,8 +63,6 @@ export default {
       date: null,
 
       error: null,
-
-      trashDate: null, // Only for fix a bug
     }
   },
   methods: {
