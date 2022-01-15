@@ -38,6 +38,7 @@
             @input="dateSelected"
             :min-date="new Date()"
             :disabled-dates="{ weekdays: [1, 7] }"
+            timezone="America/Aruba"
             is-expanded
           />
         </client-only>
@@ -77,6 +78,7 @@ export default {
       this.error = null
     },
     dateSelected(date) {
+      date.setHours(0)
       if (date) {
         this.date = date.toISOString().split('T')[0]
       }
