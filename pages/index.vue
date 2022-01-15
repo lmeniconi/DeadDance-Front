@@ -76,7 +76,7 @@ export default {
       this.error = null
     },
     dateSelected(date) {
-      console.log('before', this.date)
+      console.log('before', date)
       date.setHours(0)
       if (date) {
         this.date = date.toISOString().split('T')[0]
