@@ -79,6 +79,7 @@ export default {
       date.setHours(0)
       if (date) {
         this.date = date.toISOString().split('T')[0]
+        console.log(this.date)
       }
       this.toggleReserveModal()
     },
